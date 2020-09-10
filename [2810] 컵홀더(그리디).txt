@@ -1,0 +1,17 @@
+n = int(input())
+data = input()
+
+count =0
+
+for i in range(n):
+  
+  if data[i] == 'L':
+    count += 1
+
+result = (n+1) - (count//2)
+
+if result > n:
+  result = n
+  
+print(result)
+  

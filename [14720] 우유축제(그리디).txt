@@ -1,0 +1,17 @@
+n = int(input())
+data = list(map(int,input().split()))
+
+tmp = 0 
+result = 0
+
+for i in data:
+  
+  if tmp == i:
+    result += 1
+
+    if tmp == 2:
+      tmp =0
+    else:
+      tmp +=1
+
+print(result)
