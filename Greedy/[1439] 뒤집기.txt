@@ -1,0 +1,16 @@
+data = input()
+
+result =0
+prevData = int(data[0])
+
+for i in range(1,len(data)):
+  
+  if prevData == int(data[i]):
+    continue
+  else:
+    prevData = int(data[i])
+    result +=1
+    
+result += 1
+
+print(result//2)
