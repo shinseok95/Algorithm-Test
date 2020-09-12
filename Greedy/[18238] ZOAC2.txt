@@ -1,0 +1,16 @@
+data = input()
+
+center = 'A'
+sum = 0
+
+for c in data:
+
+  if abs(ord(c) - ord(center)) < 13:
+    sum+= abs(ord(c)-ord(center))
+    center = c
+  
+  else :    
+    sum+= 26-abs((ord(c)-ord(center)))
+    center =c
+
+print(sum)

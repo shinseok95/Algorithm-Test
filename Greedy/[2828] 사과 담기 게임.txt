@@ -1,0 +1,23 @@
+n, m = map(int,input().split())
+j = int(input())
+
+left = 1
+right = m
+result =0
+for i in range(j):
+  where = int(input())
+  
+  if where <= right and where >= left:
+    continue
+  
+  elif where > right:
+    result += (where-right)
+    left += (where-right)
+    right = where
+  
+  elif where < left:
+    result += (left-where)
+    right -= (left-where)
+    left = where
+
+print(result)
