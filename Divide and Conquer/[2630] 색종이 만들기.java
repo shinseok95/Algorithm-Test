@@ -1,6 +1,3 @@
-package day03;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +31,6 @@ public class Main {
 				blueCount++;
 			else
 				whiteCount++;
-			
 			return;
 		}
 		
@@ -80,10 +76,8 @@ public class Main {
 	
 	public static void copy(int[][] src, int[][] dest, int srcXPos, int srcYPos, int N) {
 		
-		int j=0;
+		int row=0;
 		for(int i=srcYPos;i<srcYPos+N;i++) 
-			System.arraycopy(src[i], srcXPos, dest[j++], 0, N);
+			System.arraycopy(src[i], srcXPos, dest[row++], 0, N);
 	}
-	
-
 }
