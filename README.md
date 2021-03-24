@@ -21,15 +21,16 @@
 
 - 특징
   - 대표적으로 Depth First Search, Breadth First search, Best First Search 등의 방법이 있음
-  - 완전탐색의 경우, 대체적으로 BFS가 DFS보다 빠름
   
 - Tip
   - 단방향 연결과 양방향 연결을 구분하자 (웬만해서 양방향일 확률이 높음)
-
+  - 완전탐색의 경우, 대체적으로 BFS가 DFS보다 빠름
+  - 경로의 특징을 저장해둬야하는 경우 : DFS
+  - 최단 경로를 구해야하는 경우 : BFS
 - 문제 유형
   - 완전 탐색 
-    - 영역의 수를 구하는 문제
-    - 
+    - 영역의 수를 구하는 문제 (DFS,BFS)
+    - 최단 경로(BFS)
 ## Depth First Search (DFS)
 
 - 정의
@@ -52,10 +53,10 @@
 
 ```python
 def dfs(graph,visited,V):
-    
+
+  # 필요한 내용 여기서 구현
+  
   for v in graph[V]:
-    
-    # 필요한 내용 여기서 구현
     
     if !visited[v]:
     
