@@ -21,7 +21,7 @@
 
 - 특징
   - 대표적으로 Depth First Search, Breadth First search, Best First Search 등의 방법이 있음
-  
+  - 반드시 방문여부를 기록해야한다 (하지 않을 시, 무한으로 깊어짐)
 - Tip
   - 단방향 연결과 양방향 연결을 구분하자 (웬만해서 양방향일 확률이 높음)
   - 완전탐색의 경우, 대체적으로 BFS가 DFS보다 빠름
@@ -38,7 +38,7 @@
 - 특징
   - Stack 또는 Recursion 사용
   - BFS보다 구현이 간단하다
-  - 반드시 방문여부를 기록해야한다 (하지 않을 시, 무한으로 깊어짐)
+
 - 장점
   - 현재 경로의 노드만 기억하면 되므로, 저장 공간을 덜 차지함
   - 구현이 간단하다
@@ -47,10 +47,11 @@
   - 너무 깊은 단계까지 빠질 가능성이 있다.
 
 - Tip
-  - recursion 깊이 조절 :  ```sys.setrecursionlimit()``` 
+  - recursion 깊이 조절 :  ```sys.setrecursionlimit(N)``` 
   - 경로의 특징을 저장해둬야하는 경우 유용
   - 가지치기, 백트래킹등을 잘 활용해서 최대한 깊이를 줄이자
 
+- Template
 ```python
 def dfs(graph,visited,V):
 
