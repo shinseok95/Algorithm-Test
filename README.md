@@ -1,9 +1,9 @@
 # Algorithm-Test-Exercise
 > 코딩테스트를 대비한 문제 풀이를 정리하는 Repository입니다.
 
-# 코딩테스트를 위한 파이썬
+## 코딩테스트를 위한 파이썬
 
-## 시간 복잡도
+### 시간 복잡도
 - 1초에 1000-2000만번 연산 가능
 - N의 범위
   - 500 : O(N**3)
@@ -11,7 +11,7 @@
   - 100,000 : O(NlogN)
   - 10,000,000 : O(N)
  
-## 데이터 수를 정해주지 않을 때
+### 데이터 수를 정해주지 않을 때
 
 ```python
 
@@ -22,7 +22,7 @@ while True:
   except:
 ```
 
-## 재귀 깊이 조절
+### 재귀 깊이 조절
 
 ```python
 
@@ -30,7 +30,7 @@ import sys
 sys.setrecursionlimit(10**5)
 ```
 
-## Python3와 Pypy3 비교 
+### Python3와 Pypy3 비교 
 
 - Python3 
   - 장점 : 메모리 사용량이 적음
