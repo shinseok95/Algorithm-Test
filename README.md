@@ -1,7 +1,58 @@
 # Algorithm-Test-Exercise
 > 코딩테스트를 대비한 문제 풀이를 정리하는 Repository입니다.
 
-# 개념 정리
+# 코딩테스트를 위한 파이썬
+
+## 시간 복잡도
+- 1초에 1000-2000만번 연산 가능
+- N의 범위
+  - 500 : O(N**3)
+  - 2000 : O(N**2)
+  - 100,000 : O(NlogN)
+  - 10,000,000 : O(N)
+ 
+## 데이터 수를 정해주지 않을 때
+
+```python
+
+while True:
+
+  try:
+  
+  except:
+```
+
+## 재귀 깊이 조절
+
+```python
+
+import sys
+sys.setrecursionlimit(10**5)
+```
+
+## Python3와 Pypy3 비교 
+
+- Python3 
+  - 장점 : 메모리 사용량이 적음
+  - 단점 : 느림 => Pypy3이 사용 가능하다면 Pypy3를 사용하자
+
+- Python3 
+  - 장점 : 빠름
+  - 단점 : 메모리 사용량이 많음 => 출력 메모리를 줄이자
+
+
+```python
+
+import sys
+
+# 메모리 사용량 많음
+print(n)
+
+# 메모리 사용량을 줄일 수 있음
+sys.stdout.write(str(n))
+```
+
+# 알고리즘 개념 정리
 
 ## Greedy Algorithm
 
