@@ -208,7 +208,7 @@ def quick_selection(arr, start, end, key):
     quick_selection(arr,right+1,end,key)
     
 ```
->[참고 URL](https://bowbowbow.tistory.com/8)
+>[참고 URL](https://debuglog.tistory.com/70)
 
 ### 다중 조건 정렬
 
