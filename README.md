@@ -11,15 +11,29 @@
   - 100,000 : O(NlogN)
   - 10,000,000 : O(N)
  
-### 데이터 수를 정해주지 않을 때
+### 데이터 수와 breaking posint를 정해주지 않을 때
+
+
 
 ```python
 
 while True:
+    try: n = 
+      int(input())
+      
+      # 여기서 계산하고 출력
+      
+    except:
+      break 
 
-  try:
-  
-  except:
+######
+
+import sys
+
+N = list(map(int, stdin.read().split()))
+
+for n in N:
+  # 여기서 계산하고 출력
 ```
 
 ### 재귀 깊이 조절
