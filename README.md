@@ -103,6 +103,7 @@ sys.stdout.write(str(n))
 - Tip
   - recursion 깊이 조절 :  ```sys.setrecursionlimit(N)```
   - 백트래킹(가지치기)을 잘 활용해서 최대한 깊이를 줄이자
+  - 그래프가 이진 트리의 모양이 나오면 시간복잡도가 O(2**N)이 나온다. DP를 이용하자.
 
 - Template
 ```python
