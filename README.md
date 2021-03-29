@@ -25,8 +25,9 @@ while True:
       
     except:
       break 
+```
 
-######
+```python
 
 import sys
 
@@ -289,3 +290,69 @@ def quick_selection(arr, start, end, key):
 
 array.sort(key = lambda x : (x[1],-x[2],x[3])
 ```
+
+## Search
+
+### Parametric Search
+
+- 정의
+  - 최적화 문제를 결정 문제(yes or no)로 바꿔서 해결하는 알고리즘
+  - 주어진 범위 내에서 원하는 값 또는 원하는 조건에 가장 일치하는 값을 찾는 알고리즘
+
+- 방법
+  - 주어진 범위를 정렬한다.
+  - 중간 값이 조건을 만족하는 경우, 만족하는 방향으로 start,end 값을 조정한다.
+  - start <= end를 만족하지 않는 경우, 결과값을 리턴한다.
+ 
+- 특징
+  - 시간 복잡도 : O(logN)
+
+- Tip
+  - 주어진 범위 내(엄청나게 큰 범위)에서 최솟값, 최댓값을 구하는 문제 중 결정 문제로 바꿀 수 있다면 활용
+  - 처음에 start, end 범위를 구하는 것이 가장 중요
+  - 최솟값을 구하는 경우, 왼쪽(end-1)에서 결과값이 나온다. (주어진 조건을 만족하는 동시에 가장 작은 것을 구하기 때문)
+  - 최댓값을 구하는 경우, 오른쪽(start+1)에서 결과값이 나온다. (주어진 조건을 만족하는 동시에 가장 큰 것을 구하기 때문)
+ 
+```python
+
+def parametric(M):
+  
+  start = 0
+  end = 10**9
+  result = 0
+  
+  while start<=end:
+    
+    mid = (start+end)//2
+    target = 0
+    
+    # 여기서 target 조건 계산
+     
+    if  target <= M:
+      end = mid-1
+      result = mid
+    else:
+      start = mid+1
+
+  return result
+```
+
+### 특정 범위 데이터 개수 구하기
+
+- Tip
+  - 주어진 리스트가 정렬 가능한 개수인지 계산 (O(nlogN))
+  - 정렬 가능하다면 사용, 정렬 불가능하다면 다른 방법 사용
+
+```python
+
+import sys
+from bisect import bisect_left,bisect_right
+
+def count_by_range(arr,left,right):
+  
+  right_index = bisect_right(arr,right)
+  left_index = bisect_left(arr,left)
+  
+  return right_index - left_index
+```
+
