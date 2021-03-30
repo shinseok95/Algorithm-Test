@@ -6,8 +6,8 @@
 ### 시간 복잡도
 - 1초에 1000-2000만번 연산 가능
 - N의 범위
-  - 500 : O(N**3)
-  - 2000 : O(N**2)
+  - 500 : O(N^3)
+  - 2000 : O(N^2)
   - 100,000 : O(NlogN)
   - 10,000,000 : O(N)
  
@@ -42,7 +42,7 @@ for n in N:
 ```python
 
 import sys
-sys.setrecursionlimit(10**5)
+sys.setrecursionlimit(10^5)
 ```
 
 ### Python3와 Pypy3 비교 
@@ -87,7 +87,7 @@ sys.stdout.write(str(n))
 
 - 특징
   - 대표적으로 Depth First Search, Breadth First search, Best First Search 등의 방법이 있음
-  - 반드시 방문여부를 기록해야한다 (하지 않을 시, 무한루프에 빠짐)
+  - 반드시 **방문여부를 기록**해야한다 (하지 않을 시, 무한루프에 빠짐)
 - Tip
   - 단방향 연결과 양방향 연결을 구분하자 (웬만해서 양방향일 확률이 높음)
   - 완전탐색의 경우, 대체적으로 BFS가 DFS보다 빠름
@@ -99,7 +99,7 @@ sys.stdout.write(str(n))
     - 최단 경로(BFS)
     - 탐색 과정에서 제약 사항이 있거나 가중치가 있는 경우 (DFS)
   
-## Depth First Search (DFS)
+### Depth First Search (DFS)
 
 - 정의
   - 그래프 전체를 탐색할 때, 다음 분기로 넘어가기 전에 현재 분기를 완벽하게 탐색하고 넘어가는 알고리즘
@@ -118,7 +118,7 @@ sys.stdout.write(str(n))
 - Tip
   - recursion 깊이 조절 :  ```sys.setrecursionlimit(N)```
   - 백트래킹(가지치기)을 잘 활용해서 최대한 깊이를 줄이자
-  - 그래프가 이진 트리의 모양이 나오면 시간복잡도가 O(2**N)이 나온다. DP를 이용하자.
+  - 그래프가 이진 트리의 모양이 나오면 시간복잡도가 O(2^N)이 나온다. DP를 이용하자.
 
 - Template
 ```python
@@ -136,7 +136,7 @@ def dfs(graph,visited,V):
 
 >[참고 URL](https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html)
 
-## Breadth First Search (BFS)
+### Breadth First Search (BFS)
 
 - 정의
   - 그래프 전체를 탐색할 때, 인접한 노드를 먼저 탐색하는 방법
@@ -175,7 +175,7 @@ def bfs(graph,visited,V):
 >[참고 URL](https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html)
 
 
-## Backtracking
+### Backtracking
 
 - 정의
   - 답이 될만한지 판단하고, 그렇지 않으면 탐색하지 않고 돌아가는 기법
@@ -187,6 +187,119 @@ def bfs(graph,visited,V):
   - Stack 또는 queue에 넣기전에 먼저 유망성 검사를 해주면 더 효율적임(이미 방문했는지, 허용 범위를 넘어가지 않는지 등)
 
 >[참고 URL](https://chanhuiseok.github.io/posts/algo-23/)
+
+## Dynamic Programming
+
+- 정의
+  - 메모리를 적절히 사용하여 수행 시간 효율성을 비약적으로 향상시키는 방법
+
+- 조건
+  - ① : Optimal Substructual(최적 부분 구조)
+    - 큰 문제를 작은 문제로 나눌 수 있으며, 작은 문제의 답을 모아서 큰 문제를 해결하는 경우
+  - ② : Overlapping Subproblem(중복되는 부분 문제)
+    - 동일한 작은 문제를 반복적으로 해결하는 경우
+
+- 종류
+  - ① Top down (Memoization)
+    - 큰 문제를 해결하기 위해 작은 문제를 재귀적으로 호출 (DFS)
+    - 이미 해결한 문제의 값은 메모리에 저장해놓고, 반복 호출시 메모리에서 값을 가져온다(Memoization)
+  - ② Bottom up
+    - 작은 문제를 해결해나가며, 먼저 계산한 문제의 값을 활용하여 다음 문제들을 해결(반복문)
+    - 점화식 도출
+
+- Tip
+  - 큰 문제가 작은 문제로 나눠지지만, 중복 연산이 없는 경우 : Divide and conqure
+  - 큰 문제가 작은 문제로 나눠지고, 중복 연산이 있는 경우 : Dynamic programming
+
+- 문제 유형 Tip
+  - DP 문제인데 "입력 개수가 적거나", "입력 값이 작다면" 2차원 리스트 or 3차원 리스트를 통해 해결할 수 있는지 생각해보자
+  - 도형 문제, 주어진 수(ex : 1,2,3)를 활용하는 문제라면 **피보나치 수열**을 떠올려보자 (DP[i] = DP[i-1] + DP[i-2])
+  - 선분이 나오고 겹친 것을 해결하는 문제, 작은 상자를 큰 상자에 넣는 문제(가장 길게 증가하는 부분) -> **LIS**를 떠올
+ 
+### 연속 부분 최대합
+
+- 정의
+  - 정수로 이루어진 수열에 대해, 연속된 부분구간 중 그 합이 최대가 되는 구간을 찾는 유형
+
+- 아이디어
+  - i-1번째까지의 합이 0보다 작으면 새로 시작하는 것이 더 낫다.
+  
+- 점화식
+  - DP[i] = max(0,DP[i-1])+arr[i] (i>0)
+  - DP[i] = arr[i] (i=0)
+
+- 시간 복잡도
+  - O(N)
+
+-Source Code
+
+```python
+
+# arr : 정수로 이뤄진 리스트
+
+dp[0] = arr[0]
+
+for i in range(1,len(arr)):
+  dp[i] = max(0,dp[i-1]) + arr[i]
+    
+```
+
+### 연속 부분 최대합(구간합)
+
+- 정의
+  - 정수로 이루어진 수열에 대해, 연속된 부분구간 중 그 합이 최대가 되는 구간을 찾는 유형
+
+- 아이디어
+  - i-1번째까지의 합이 0보다 작으면 새로 시작하는 것이 더 낫다.
+  
+- 점화식
+  - DP[i] = max(0,DP[i-1])+arr[i] (i>0)
+  - DP[i] = arr[i] (i=0)
+
+- 시간 복잡도
+  - O(N)
+
+-Source Code (DP)
+
+```python
+
+# arr : 정수로 이뤄진 리스트
+
+dp[0] = arr[0]
+
+for i in range(1,len(arr)):
+  dp[i] = max(0,dp[i-1]) + arr[i]
+    
+```
+
+### LIS (Longest Increasing Subsequence)
+
+- 정의
+  - 주어진 수열 내에서 증가하는 가장 긴 부분 수열을 찾아내는 알고리즘
+
+- 아이디어
+  - arr[i]보다 크기가 작은 수를 찾아서 해당 부분 수열의 길이에 1을 더한 값을 DP[i]에 저장(i-1 까지 반복)
+
+- 점화식
+  - DP[i] = max(DP[i], DP[j]+1) (if, arr[i] >arr[j])
+
+- 시간 복잡도
+  - O(N^2)
+  - Binary search : O(NlogN)
+
+- Source code(DP)
+
+```python
+
+for i in range(N):
+  dp[i] = 1
+  
+  for j in range(i):
+
+    if data[j] <data[i]:
+      dp[i] = max(dp[i],dp[j]+1)
+    
+```
 
 
 ## Sorting
@@ -336,6 +449,8 @@ def parametric(M):
 
   return result
 ```
+
+## 기타
 
 ### 특정 범위 데이터 개수 구하기
 
