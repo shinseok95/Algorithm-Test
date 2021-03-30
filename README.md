@@ -18,8 +18,8 @@
 ```python
 
 while True:
-    try: n = 
-      int(input())
+    try: 
+      n = int(input())
       
       # 여기서 계산하고 출력
       
