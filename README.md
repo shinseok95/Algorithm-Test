@@ -13,8 +13,6 @@
  
 ### 데이터 수와 breaking point를 정해주지 않을 때
 
-
-
 ```python
 
 while True:
@@ -174,6 +172,38 @@ def bfs(graph,visited,V):
 
 >[참고 URL](https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html)
 
+### Best First Search
+
+- 정의
+  - 확장 중인 노드들 중에서 목표 노드까지 남은 거리가 가장 짧은 노드로 확장하는 알고리즘
+- 특징
+  - Priority queue를 사용
+  - Heuristic 탐색 -> 추측을 통해 괜찮은 방향으로 진행하기 때문
+  - Greedy Algorithm -> 현재 상황에서 가장 좋은 것을 선택하기 때문
+  - 다익스트라 알고리즘과 다르게 늘 최단 거리를 보장하는 것은 아님
+
+- Template
+```python
+
+from heapq import heappush, heappop
+
+def bestfs(graph,visited,V):
+
+  queue = []
+  heappush(queue,(0,V))
+  visited[V] = True
+  
+  while queue:
+    
+    dist,now = heappop(queue)
+   
+    # 필요한 내용 여기서 구현
+    
+    for i in graph[now]:
+      if not visited[i]:
+        visited[i] = True
+        heappush(queue,(dist+1,i))
+```
 
 ### Backtracking
 
@@ -207,7 +237,8 @@ def bfs(graph,visited,V):
 - 정의
   - 다익스트라가 제안한 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 알고리즘
 - 특징
-  - Breadth First Search
+  - 1차원 그래프뿐만 아니라 2차원 
+  - 시작점과의 거리를 기준으로 다음 경로를 설정함(Best First Search와의 차이점) -> 최단 거리를 보장해줌
   - 음의 간선이 없을 때 가능
   - 매 상황에서 가장 비용이 적은 vertex를 선택 (Greedy Algorithm)
   - 네트워크 경로 설계에 많이 적용 -> 라우팅 프로토콜 OSPF(Open Shortest Path First)
