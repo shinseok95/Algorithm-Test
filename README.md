@@ -11,7 +11,7 @@
   - 100,000 : O(NlogN)
   - 10,000,000 : O(N)
  
-### 데이터 수와 breaking posint를 정해주지 않을 때
+### 데이터 수와 breaking point를 정해주지 않을 때
 
 
 
@@ -199,15 +199,18 @@ def bfs(graph,visited,V):
 - 문제유형
   - ① 하나의 정점에서 다른 하나의 정점까지의 최단 거리를 구하는 문제
   - ② 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제 (다익스트라 알고리즘)
-  - ③ 모든 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제
+  - ③ 하나의 목적지까이의 모든 최단 경로
+  - ④ 모든 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제
 
 ### 다익스트라 알고리즘
 
 - 정의
   - 다익스트라가 제안한 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 알고리즘
 - 특징
+  - Breadth First Search
   - 음의 간선이 없을 때 가능
   - 매 상황에서 가장 비용이 적은 vertex를 선택 (Greedy Algorithm)
+  - 네트워크 경로 설계에 많이 적용 -> 라우팅 프로토콜 OSPF(Open Shortest Path First)
 
 - 시간복잡도
   - 선형탐색 : O(V^2) (Vertex 5000개까지 가능)
@@ -272,7 +275,7 @@ distance = [INF] * (N+1)
 
 def dijkstra(start):
   
-  queue = []
+  q = []
   
   heapq.heappush(q,(0,start))
   distance[start] = 0
