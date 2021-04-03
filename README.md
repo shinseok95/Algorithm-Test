@@ -188,6 +188,111 @@ def bfs(graph,visited,V):
 
 >[참고 URL](https://chanhuiseok.github.io/posts/algo-23/)
 
+## 최단 경로 탐색
+
+- 정의
+  - 가장 짧은 경로를 찾는 알고리즘
+
+- 특징
+  - Vertex(국가, 지역 등), Edge(다리, 도로 등)으로 표현된 그래프가 주어짐 
+
+- 문제유형
+  - ① 하나의 정점에서 다른 하나의 정점까지의 최단 거리를 구하는 문제
+  - ② 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제 (다익스트라 알고리즘)
+  - ③ 모든 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제
+
+### 다익스트라 알고리즘
+
+- 정의
+  - 다익스트라가 제안한 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 알고리즘
+- 특징
+  - 음의 간선이 없을 때 가능
+  - 매 상황에서 가장 비용이 적은 vertex를 선택 (Greedy Algorithm)
+
+- 시간복잡도
+  - 선형탐색 : O(V^2) (Vertex 5000개까지 가능)
+  - Priority Queue 사용 : O(ElogV) (Edge 10~20만개 / Vertex 1만개 이상 가능)
+ 
+- 동작 과정
+  - 출발 노드 설정
+  - 최단 거리 테이블 초기화
+  - 방문하지 않은 노드 중 최단 거리가 가장 짧은 노드를 선택
+  - 해당 노드를 거쳐 다른 노드로 가는 비용을 계산해서 최단 거리 테이블 갱신
+
+- 선형탐색 Template
+
+```python
+INF = int(1e9)
+
+graph = [[] for _ in range(N+1)]
+visited = [False] * (N+1)
+distance = [INF] * (N+1)
+
+def get_smallest_node():
+  min_value = INF
+  index = 0
+  
+  for i in range(1,N+1):
+    if distance[i] < min_value and not visited[i] :
+      min_value = distance[i]
+      index = i
+  
+  return index
+
+def dijkstra(start):
+  
+  distance[start] = 0
+  visited[start] = True
+  
+  for i in graph[start] :
+    distance[i[0]] = i[1]
+  
+  for i in range(N-1):
+    
+    now = get_smallest_node()
+    
+    visited[now] = True
+    
+    for j in graph[now]:
+      cost = distance[now] + j[1]
+      
+      if cost < distance[j[0]]:
+        distance[j[0]] = cost
+```
+
+- 우선순위 큐 Template
+
+```python
+import heapq
+
+INF = int(1e9)
+
+graph = [[] for _ in range(N+1)]
+distance = [INF] * (N+1)
+
+def dijkstra(start):
+  
+  queue = []
+  
+  heapq.heappush(q,(0,start))
+  distance[start] = 0
+  
+  while queue:
+    
+    dist, now = heapq.heappop(q)
+    
+    if distance[now] < dist:
+      continue
+     
+     for i in graph[now]:
+      
+      cost = i[1] + dist
+      
+      if cost < distance[i[0]]:
+        distance[i[0]] = cost
+        heapq.heappush((cost,i[0]))
+```
+
 ## Dynamic Programming
 
 - 정의
