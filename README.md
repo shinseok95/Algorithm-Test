@@ -229,8 +229,8 @@ def bestfs(graph,visited,V):
 - 문제유형
   - ① 하나의 정점에서 다른 하나의 정점까지의 최단 거리를 구하는 문제
   - ② 하나의 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제 (다익스트라 알고리즘)
-  - ③ 하나의 목적지까이의 모든 최단 경로
-  - ④ 모든 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제
+  - ③ 하나의 목적지까지의 모든 최단 경로
+  - ④ 모든 정점에서 다른 모든 정점까지의 최단 거리를 구하는 문제 (플로이드 워셜 알고리즘)
 
 ### 다익스트라 알고리즘
 
@@ -330,6 +330,44 @@ def dijkstra(start):
       if cost < distance[i[0]]:
         distance[i[0]] = cost
         heapq.heappush((cost,i[0]))
+```
+
+### 플로이드 워셜 알고리즘
+
+- 정의
+  - 플로이드가 제안한 모든 정점간의 최단 거리를 구하는 알고리즘
+- 특징
+  - 2차원 리스트 사용
+  - 음의 간선이 있을 때도 사용 가능
+  - 모든 노드에서 다른 모든 노드까지의 최단 경로 보장
+  - 거쳐 가는 노드를 기준으로 알고리즘을 수행 -> a에서 b로 가는 최단 거리보다 a에서 k를 거쳐 b로 가는 거리가 더 짧은지 검사
+  - 점화식 : Dab = min(Dab, Dak+Dkb) -> Dynamic programming
+
+- 시간복잡도
+  - O(V^3) (Vertex 250-300개까지 가능)
+ 
+- 동작 과정
+  - 최단 거리 테이블 초기화 (a->a인 경우는 0으로 초기화)
+  - k번 노드를 거쳐가는 경우를 고려하여 최단 거리 테이블 갱신 
+
+
+- Template
+
+```python
+INF = int(1e9)
+
+graph = [[INF] * (N+1) for _ in range(N+1)]
+
+for i in range(1,N+1):
+  for j in range(1,N+1):
+    if i == j :
+      graph[i][j] = 0
+
+for k in range(1,N+1):
+  for i in range(1,N+1):
+    for j in range(1,N+1):
+      graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
+      
 ```
 
 ## Dynamic Programming
