@@ -400,6 +400,9 @@ for k in range(1,N+1):
   - 만약 부모와 해당 노드가 같다면 해당 노드를 리턴(본인이 루트)
   - 만약 부모와 해당 노드가 다르다면, 재귀적으로 부모 노드를 Find 함수로 다시 호출
 
+- Tip
+  - 마지막에 부모테이블 최신화를 해주자(하지 않는 경우, 정답이 달라질 수도 있음)
+ 
 - Template
 ```python
 
@@ -439,6 +442,9 @@ for i in range(E):
   a,b = map(int,input().split())
   union_parent(parent,a,b)
   
+# 부모테이블 루트 노드로 최신화
+for i in range(N):
+  find_parent(parent,i)
 ```
 
 - 서로소 집합을 활용한 사이클 판별(무방향 그래프)
