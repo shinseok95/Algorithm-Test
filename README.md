@@ -150,7 +150,7 @@ def dfs(graph,visited,V):
 
 - Tip
   - Collections 라이브러리의 deque를 사용하자(popleft(), append() : O(1))
-
+  - visited 체크는 queue에서 꺼낼때 하지말고, for문에서 queue로 넣을 때 미리 체크해주자(아니면 중복 노드가 들어갈 수도 있음)
 - Template
 ```python
 def bfs(graph,visited,V):
