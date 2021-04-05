@@ -374,6 +374,112 @@ for k in range(1,N+1):
       
 ```
 
+### Disjoint set (서로소 집합)
+
+- 정의
+  - 서로소 부분 집합들로 나누어진 원소들의 데이터를 처리하기 위한 자료구조 (Union Find 자료구조)
+
+- 종류
+  - Union(합집합) : 두 개의 원소가 포함된 집합을 하나의 집합으로 합치는 연산
+  - Find(찾기) : 특정한 원소가 속한 집합이 어떤 집합인지 알려주는 연산
+ 
+- 특징
+  - 노드간의 연결성을 집합의 형태로 손쉽게 확인할 수 있다.
+
+- 시간복잡도
+  - O(V)
+
+- Union 동작 과정
+  - 여러 Union 연산(Edge)이 주어진다.
+  - 해당 Union 연산의 A와 B 노드의 루트 노드 A', B'를 찾는다.
+  - A'를 B'의 부모 노드로 설정 (큰 노드를 작은 노드의 부모로 설정하는 것이 관례)
+  - 모든 Union 연산에 반복
+
+- Find 동작 과정
+  - 부모 테이블에서 해당 노드의 부모를 확인
+  - 만약 부모와 해당 노드가 같다면 해당 노드를 리턴(본인이 루트)
+  - 만약 부모와 해당 노드가 다르다면, 재귀적으로 부모 노드를 Find 함수로 다시 호출
+
+- Template
+```python
+
+# 단순히 부모 노드를 찾는 경우
+def find_parent(parent, x):
+  if parent[x] != x:
+    return find_parent(parent,parent[x])
+  
+  return x
+  
+# 부모 테이블을 루트 노드로 갱신하는 경우 (시간복잡도가 개선됨)
+
+def find_parent(parent,x):
+  
+  if parent[x] != x:
+    parent[x] = find_parent(parent,parent[x])
+  
+  return parent[x]
+  
+def union_parent(parent,a,b):
+  
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  
+  if a<b:
+    parent[b] = a
+  else:
+    parent[a] = b
+
+
+# 부모 테이블을 자기 자신으로 초기화
+for i in range(1,V+1):
+  parent[i] = i
+
+# Edge 별로 Union 연산
+for i in range(E):
+  a,b = map(int,input().split())
+  union_parent(parent,a,b)
+  
+```
+
+- 서로소 집합을 활용한 사이클 판별(무방향 그래프)
+```python
+
+def find_parent(parent,x):
+  
+  if parent[x] != x:
+    parent[x] = find_parent(parent,parent[x])
+  
+  return parent[x]
+  
+def union_parent(parent,a,b):
+  
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  
+  if a<b:
+    parent[b] = a
+  else:
+    parent[a] = b
+
+for i in range(1,V+1):
+  parent[i] = i
+
+cycle = False
+
+# 서로 루트 노드가 같은데 Edge로 연결된다면 사이클이 발생한 것임
+for i in range(E):
+  a,b = map(int,input().split())
+  
+  if find_parent(parent,a) == find_parent(parent,b):
+    cycle = True
+    break
+  else:
+    union_parent(parent,a,b)
+    
+```
+
+
+
 ## Dynamic Programming
 
 - 정의
