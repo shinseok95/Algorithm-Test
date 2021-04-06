@@ -512,9 +512,7 @@ for i in range(E):
 - 크루스칼 알고리즘
   - Edge 비용순으로 오름차순 정렬
   - Edge를 하나씩 확인하며, 서로 연결되어있지 않으면(사이클 X) 신장 트리에 포함 -> 이미 연결시 포함X
- 
-- Tip
-  - Sorting 대신 priority queue를 사용하면 더 빠르게 처리할 수 있다.
+
  ```python
 
 def find_parent(parent,x):
