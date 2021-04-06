@@ -65,6 +65,15 @@ print(n)
 sys.stdout.write(str(n))
 ```
 
+### 소숫점 N번째까지 출력
+
+```python
+
+# ex) 소숫점 2번째까지 출력
+print({:.2f}.format(result))
+
+```
+
 # 알고리즘 개념 정리
 
 ## Greedy Algorithm
