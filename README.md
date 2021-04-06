@@ -485,6 +485,62 @@ for i in range(E):
     
 ```
 
+### Minimum Spanning Tree(최소 신장 트리)
+
+- 정의
+  - Spanning Tree : 그래프에서 모든 노드를 포함하면서 사이클이 존재하지 않는 부분 그래프
+  - Minimum Spanning Tree : Edge 가중치 합이 최소인 Spanning Tree
+ 
+- 조건
+  - 본래의 그래프의 모든 노드를 포함
+  - 모든 노드가 서로 연결
+  - 사이클이 존재하지 않음(트리의 조건)
+
+- 알고리즘 종류
+  - Kruskal’s algorithm (크루스칼 알고리즘) -> O(ElogE)
+  - Prim's algorithm (프림 알고리즘)
+
+- 크루스칼 알고리즘
+  - Edge 비용순으로 오름차순 정렬
+  - Edge를 하나씩 확인하며, 서로 연결되어있지 않으면(사이클 X) 신장 트리에 포함 -> 이미 연결시 포함X
+ 
+ ```python
+
+def find_parent(parent,x):
+  
+  if parent[x] != x:
+    parent[x] = find_parent(parent,parent[x])
+  
+  return parent[x]
+  
+def union_parent(parent,a,b):
+  
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  
+  if a<b:
+    parent[b] = a
+  else:
+    parent[a] = b
+
+for i in range(1,V+1):
+  parent[i] = i
+
+for _ in range(e):
+  a,b,cost = map(int,input().split())
+  edges.append((cost,a,b))
+
+edges.sort()
+
+for edge in edges:
+  
+  cost, a, b = edge
+  
+  if find_parent(parent,a) != find_parent(parent,b):
+    union_parent(parent,a,b)
+    result += cost
+    
+```
 
 
 ## Dynamic Programming
