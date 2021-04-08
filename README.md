@@ -383,6 +383,8 @@ for k in range(1,N+1):
       
 ```
 
+## 기타 그래프 알고리즘
+
 ### Disjoint set (서로소 집합)
 
 - 정의
