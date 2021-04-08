@@ -551,6 +551,56 @@ for edge in edges:
     
 ```
 
+### Topological sorting
+
+- 정의
+  - 사이클이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않도록 순서대로 나열하는 것
+  - 어떤 일을 하는 순서를 찾는 알고리즘
+
+- 조건
+  - 사이클이 존재하지 않는 방향 그래프 (DAG : Direct Acyclic Graph)
+
+- 특징
+  - 여러 가지 답이 존재할 수 있음
+  - 모든 원소를 방문하기 전에 Queue가 빈다면 사이클이 존재하는 것
+  - 시간복잡도 : O(V+E)
+
+- 동작과정
+  - 진입차수(Indegree)가 0인 모든 노드를 Queue에 삽입
+  - Queue에서 원소를 꺼내 해당 노드에서 나가는 간선을 그래프에서 제거
+  - 새롭게 진입차수가 0이 된 노드를 Queue에 삽입
+  - 큐가 빌 때까지 반복
+
+- Template
+
+ ```python
+
+indegree = [0]*(V+1)
+
+for _ in range(E):
+  a,b = map(int,input().split()
+  graph[a].append(b)
+  indegree[a] += 1
+
+def topology_sort():
+  result = []
+  
+  q = deque()
+  
+  for i in range(1,V+1):
+    if indegree[i] == 0:
+      q.append(i)
+  
+  while q:
+    now = q.popleft()
+    result.append(now)
+    
+    for i in graph[now]:
+      indegree[i] -= 1
+      
+      if indegree[i] == 0:
+        q.append(i)
+```
 
 ## Dynamic Programming
 
