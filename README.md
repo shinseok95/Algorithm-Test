@@ -573,7 +573,11 @@ for edge in edges:
   - 새롭게 진입차수가 0이 된 노드를 Queue에 삽입
   - 큐가 빌 때까지 반복
 
-- Template
+- Tip
+  - 그래프 문제에서 선행 관계가 주어지면 위상 정렬을 떠올리자
+  - 선행 관계가 없는 작업들은 동시에 진행될 수 있다는 조건이 있다면, 해당 단계에서 가장 오래 걸리는 노드의 시간을 저장해야한다.
+
+- 단순 위상 정렬 Template
 
  ```python
 
@@ -602,6 +606,50 @@ def topology_sort():
       
       if indegree[i] == 0:
         q.append(i)
+```
+
+- 동시에 진행되는 위상 정렬 Template
+
+ ```python
+
+indegree = [0]*(V+1)
+times=[0]*(V+1)
+result = [0]*(V+1)
+
+out_graph = [[] for _ in range(V+1)]
+in_graph = [[] for _ in range(V+1)]
+    
+for _ in range(E):
+  a,b,t = map(int,input().split()
+  
+  out_graph[a].append(b)
+  in_graph[b].append(a)
+  times[a] = t
+  
+  indegree[a] += 1
+
+def topology_sort():
+
+  q = deque()
+  
+  for i in range(1,V+1):
+    if indegree[i] == 0:
+      q.append((i,0))
+  
+  while q:
+    now,t = q.popleft()
+    result[now] = t + times[now]
+    
+    for i in out_graph[now]:
+      indegree[i] -= 1
+      
+      if indegree[i] == 0:
+        max_time = 0
+        
+        for j in in_graph[i]:
+          max_time = max(max_time,result[j])
+        
+        q.append((i,max_time))
 ```
 
 ## Dynamic Programming
