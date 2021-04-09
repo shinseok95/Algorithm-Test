@@ -74,6 +74,25 @@ print({:.2f}.format(result))
 
 ```
 
+### 리스트 뒤집기
+
+```python
+
+#리스트 뒤집기
+
+l = [1,2,3,4]
+print(l[::-1]) # 출력 : [4,3,2,1]
+
+#문자열 뒤집기
+s = 'abcd'
+print(a[::-1] # 출력 : dcba
+
+#숫자 뒤집기
+n = 1234
+rev_n = int(str(n)[::-1])
+print(rev_n) # 출력 : 4321
+```
+
 # 알고리즘 개념 정리
 
 ## Greedy Algorithm
