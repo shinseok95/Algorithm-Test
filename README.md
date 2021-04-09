@@ -991,3 +991,25 @@ def count_by_range(arr,left,right):
   return right_index - left_index
 ```
 
+### Prime Number(소수)
+
+- 정의
+  - 1보다 큰 자연수 중에서 1과 자기 자신을 제외한 자연수로는 나눠떨어지지 않는 수
+
+- 약수의 성질
+  - 모든 약수는 가운데 약수(제곱근)를 기준으로 곱셉 연산에 대해 대칭을 이룸
+
+- 약수의 성질을 이용한 소수 판별
+  - 시간 복잡도 : O(N^0.5)
+
+```python
+
+def is_prime_number(x):
+  
+  for i in range(2, int(x**0.5)+1):
+    if x % i == 0:
+      return False
+  
+  return True
+```
+
