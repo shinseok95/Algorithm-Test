@@ -1013,3 +1013,33 @@ def is_prime_number(x):
   return True
 ```
 
+- 에라토스테네스의 체
+
+  - 정의
+    - 다수의 자연수에 대하여 소수 여부를 판별할 때 사용하는 알고리즘
+  - 특징
+    - 시간복잡도 : O(NloglogN)
+    - 메모리가 많이 필요(ex : 10억이 소수인지 판별하기 위해서는 10억개의 리스트가 필요)
+  - 동작과정
+    - 2부터 N까지의 모든 자연수를 나열
+    - 남은 수 중에서 아직 처리하지 않은 가장 작은 수 i를 찾음
+    - 남은 수 중 i의 배수를 모두 제거(i는 제거X)
+    - 더 이상 반복할 수 없을 때까지 반복
+  - Tip
+    - 다수의 소수를 구해야할 때 활용
+    - 하나의 자연수를 소수인지 판별할 때는 X
+  
+  - Template
+
+```python
+
+array = [True for i in range(N+1)]
+
+for i in range(2,int(N**0.5)+1):
+  if array[i] == True:
+    j = 2
+    
+    while i * j <= N:
+      array[i*j] = False
+      j += 1
+```
