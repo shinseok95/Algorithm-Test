@@ -1062,3 +1062,71 @@ for i in range(2,int(N**0.5)+1):
       array[i*j] = False
       j += 1
 ```
+
+### Two Pointer
+
+- 정의
+  - 리스트에 순차적으로 접근해야 할 때 두 개의 점의 위치를 기록하면서 처리하는 알고리즘
+
+- 특징
+  - 시작과 끝점으로 접근할 데이트의 범위를 표현
+
+- 특정한 합을 가지는 부분 연속 수열
+  - 정의
+    - 부분 연속 수열 중 특정 값을 가지는지 확인하는 문제 (ex : 합이 5인 부분 연속 수열의 수는 ?)
+  - 동작 과정
+    - start와 end가 첫 번째 원소의 인덱스를 가리킨다.
+    - 현재 부분 합이 찾고자하는 값과 같다면 Count
+    - 작다면, end += 1
+    - 크거나 같으면 start += 1
+ 
+  - 시간복잡도
+    - O(N)
+ 
+- Template
+
+```python
+
+for start in range(N):
+  
+  while interval_sum < M and end end < N :
+    insterval_sum += data[end]
+    end += 1
+  
+  if interval_sum == M:
+    count += 1
+    
+  interval_sum -= data[start]
+```
+
+- 구간 합(Interval Sum)
+  
+  - 정의
+    - 특정 구간의 모든 수를 합한 값을 계산하는 문제 (ex : 구간 중 가장 큰 합은?)
+
+  - 접두사 합(Prefix Sum) : 배열의 맨 앞부터 특정 위치까지의 합을 미리 구해 놓은 것
+
+  - 동작 과정
+    - N개의 수 위치 각각에 대하여 접두사 합을 계산하여 저장
+    - 쿼리가 들어왔을 때, P[right] - P[left-1]을 반환
+ 
+  - 시간복잡도
+    - O(N + M) (M : 쿼리 수) 
+ 
+- Template
+
+```python
+
+sum_value = 0
+prefix_sum = [0]
+
+for i in data:
+  sum_value += i
+  prefix_sum.append(sum_value)
+  
+# 1~10까지의 값 출력
+left = 1
+right = 10
+
+print(prefix_sum[right]-prefix_sum[left-1])
+```
