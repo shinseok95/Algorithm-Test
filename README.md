@@ -995,6 +995,19 @@ def parametric(M):
   - deque 활용 : deque.rotate(num): 데크를 num만큼 회전한다(양수면 오른쪽, 음수면 왼쪽).
   - list 활용 : arr[-1:] + arr[:-1]
 
+- 문자열에서 숫자를 추출해야하는 경우
+
+```python
+
+# [1,2,3,4,5] 형식
+
+tmp = sys.stdin.readline().rstrip()
+numbers = list(tmp[1:-1].split(",")) # ','를 구분자로 사용
+
+print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4]
+```
+
+
 ## 기타
 
 ### 특정 범위 데이터 개수 구하기
