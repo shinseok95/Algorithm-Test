@@ -65,6 +65,27 @@ print(n)
 sys.stdout.write(str(n))
 ```
 
+### 정확한 분수 나타내기
+
+```python
+from fractions import Fraction
+
+# 정확한 a/b 값 
+c = Fraction(a,b)
+```
+
+### 정확한 실수 비교
+
+```python
+from math import isclose
+
+if isclose(0.1+0.2, 0.3):
+  print('True')
+else:
+  print('False')
+
+```
+
 ### 소숫점 N번째까지 출력
 
 ```python
@@ -93,7 +114,41 @@ rev_n = int(str(n)[::-1])
 print(rev_n) # 출력 : 4321
 ```
 
+### 문자열에서 숫자를 추출
+
+```python
+
+# [1,2,3,4,5] 형식
+
+tmp = sys.stdin.readline().rstrip()
+numbers = list(tmp[1:-1].split(",")) # ','를 구분자로 사용
+
+print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4]
+```
+
 # 알고리즘 개념 정리
+
+## Math
+
+### GCD (최대공약수)
+
+```python
+
+def gcd(a,b):
+  while b!=0:
+    a,b = b,(a%b)
+  return a
+  
+```
+
+### GCD (최대공약수)
+
+```python
+
+def lcm(a,b):
+  return (a*b) // gcd(a,b)
+  
+```
 
 ## Greedy Algorithm
 
@@ -994,18 +1049,6 @@ def parametric(M):
 - 컨베이어 벨트 유형
   - deque 활용 : deque.rotate(num): 데크를 num만큼 회전한다(양수면 오른쪽, 음수면 왼쪽).
   - list 활용 : arr[-1:] + arr[:-1]
-
-- 문자열에서 숫자를 추출해야하는 경우
-
-```python
-
-# [1,2,3,4,5] 형식
-
-tmp = sys.stdin.readline().rstrip()
-numbers = list(tmp[1:-1].split(",")) # ','를 구분자로 사용
-
-print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4]
-```
 
 - 주사위를 굴리는 경우
   - 정육면체의 주사위를 그린 뒤, 움직이는 방향에 따라 어떻게 변하는지 생각해본다.
