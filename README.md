@@ -1,6 +1,42 @@
 # Algorithm-Test-Exercise
 > 코딩테스트를 대비한 문제 풀이를 정리하는 Repository입니다.
 
+# 목차
+
+-[코딩테스트를 위한 파이썬](#코딩테스트를-위한-파이썬)
+-[Math](#Math)
+  -[GCD(최대공약수)](#GCD)
+  -[LCM(최소공배수)](#LCM)
+-[Greedy Algorithm](#Greedy-Algorithm)
+-[그래프 탐색](#그래프-탐색)
+  -[DFS](#Depth-First-Search)
+  -[BFS](#Breadth-First-Search)
+  -[Best First Search](#Best-First-Search)
+  -[Backtracking](#Backtracking)
+-[최단 경로 탐색](#최단-경로-탐색)
+  -[다익스트라](#다익스트라-알고리즘)
+  -[플로이드 워셜](#플로이드-워셜-알고리즘)
+-[기타 그래프 알고리즘](#기타-그래프-알고리즘)
+  -[Disjoint set (서로소 집합)](#Disjoint-set)
+  -[Minimum Spanning Tree(최소 신장 트리)](#Minimum-Spanning-Tree)
+  -[Topological sorting (위상 정렬)](#Topological-sorting)
+-[Dynamic Programming](#Dynamic-Programming)
+  -[0-1 Knapsack Problem](#Knapsack-Problem)
+  -[주어진 수를 통해서 특정 값을 만드는 경우의 수](#주어진-수를-통해서-특정-값을-만드는-경우의-수)
+  -[연속 부분 최대합(구간합)](#연속-부분-최대합)
+  -[LIS (Longest Increasing Subsequence)](#LIS)
+-[Sorting](#Sorting)
+  -[Counting sort](#Counting-sort)
+  -[Quick selection](#Quick-selection)
+  -[다중 조건 정렬](#다중-조건-정렬)
+-[Search](#Search)
+  -[Parametric Search](#Parametric-Search)
+-[구현](#구현)
+-[기타 알고리즘](#기타-알고리즘)
+  -[특정 범위 데이터 개수 구하기](#특정-범위-데이터-개수-구하기)
+  -[Prime Number(소수)](#Prime-Number)
+  -[Two Pointer](#Two-Pointer)
+  
 ## 코딩테스트를 위한 파이썬
 
 ### 시간 복잡도
@@ -130,7 +166,7 @@ print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4
 
 ## Math
 
-### GCD (최대공약수)
+### GCD
 
 ```python
 
@@ -141,7 +177,7 @@ def gcd(a,b):
   
 ```
 
-### LCM (최소공배수)
+### LCM
 
 ```python
 
@@ -180,7 +216,7 @@ def lcm(a,b):
     - 최단 경로(BFS)
     - 탐색 과정에서 제약 사항이 있거나 가중치가 있는 경우 (DFS)
   
-### Depth First Search (DFS)
+### Depth First Search
 
 - 정의
   - 그래프 전체를 탐색할 때, 다음 분기로 넘어가기 전에 현재 분기를 완벽하게 탐색하고 넘어가는 알고리즘
@@ -217,7 +253,7 @@ def dfs(graph,visited,V):
 
 >[참고 URL](https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html)
 
-### Breadth First Search (BFS)
+### Breadth First Search
 
 - 정의
   - 그래프 전체를 탐색할 때, 인접한 노드를 먼저 탐색하는 방법
@@ -459,7 +495,7 @@ for k in range(1,N+1):
 
 ## 기타 그래프 알고리즘
 
-### Disjoint set (서로소 집합)
+### Disjoint set
 
 - 정의
   - 서로소 부분 집합들로 나누어진 원소들의 데이터를 처리하기 위한 자료구조 (Union Find 자료구조)
@@ -570,7 +606,7 @@ for i in range(E):
     
 ```
 
-### Minimum Spanning Tree(최소 신장 트리)
+### Minimum Spanning Tree
 
 - 정의
   - Spanning Tree : 그래프에서 모든 노드를 포함하면서 사이클이 존재하지 않는 부분 그래프
@@ -627,7 +663,7 @@ for edge in edges:
     
 ```
 
-### Topological sorting (위상 정렬)
+### Topological sorting
 
 - 정의
   - 사이클이 없는 방향 그래프의 모든 노드를 방향성에 거스르지 않도록 순서대로 나열하는 것
@@ -756,7 +792,7 @@ def topology_sort():
   - 도형 문제, 주어진 수(ex : 1,2,3)를 활용하는 문제라면 **피보나치 수열**을 떠올려보자 (DP[i] = DP[i-1] + DP[i-2])
   - 선분이 겹쳐진 것을 해결하는 문제, 작은 상자를 큰 상자에 넣는 문제(가장 길게 증가하는 부분) -> **LIS**를 떠올려보자
 
-### 0-1 Knapsack Problem
+### Knapsack Problem
 
 - 정의
   - 배낭의 최대값이 정해져 있고, 일정 가치와 무게가 존재하는 물건들을 배낭에 넣을 때 가치의 합이 최대가 되도록하는 알고리즘
@@ -836,7 +872,7 @@ for i in range(1,N+1):
 ```
 
 
-### 연속 부분 최대합(구간합)
+### 연속 부분 최대합
 
 - 정의
   - 정수로 이루어진 수열에 대해, 연속된 부분구간 중 그 합이 최대가 되는 구간을 찾는 유형
@@ -864,7 +900,7 @@ for i in range(1,len(arr)):
     
 ```
 
-### LIS (Longest Increasing Subsequence)
+### LIS
 
 - 정의
   - 주어진 수열 내에서 증가하는 가장 긴 부분 수열을 찾아내는 알고리즘
@@ -1146,7 +1182,7 @@ h = tmp_h
 ```
 
 
-## 기타
+## 기타 알고리즘
 
 ### 특정 범위 데이터 개수 구하기
 
@@ -1167,7 +1203,7 @@ def count_by_range(arr,left,right):
   return right_index - left_index
 ```
 
-### Prime Number(소수)
+### Prime Number
 
 - 정의
   - 1보다 큰 자연수 중에서 1과 자기 자신을 제외한 자연수로는 나눠떨어지지 않는 수
