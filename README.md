@@ -334,7 +334,23 @@ def bestfs(graph,visited,V):
   - 탐색 횟수를 상당히 줄여준다.
 - Tip
   - Stack 또는 queue에 넣기전에 먼저 유망성 검사를 해주면 더 효율적임(이미 방문했는지, 허용 범위를 넘어가지 않는지 등)
+- Template
 
+```python
+def dfs(graph,visited,V):
+
+  # 필요한 내용 여기서 구현
+  
+  for v in graph[V]:
+    
+    if not visited[v]:
+    
+      visited[V] = True
+      dfs(graph,visited,v)
+      
+      # dfs로 들어갔다가 다시 나왔을 때, False를 해줌으로써 백트래킹
+      visited[V] = False
+```
 >[참고 URL](https://chanhuiseok.github.io/posts/algo-23/)
 
 ## 최단 경로 탐색
