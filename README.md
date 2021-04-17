@@ -194,21 +194,34 @@ print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4
 ### GCD
 
 ```python
+import math
+
+# 함수로 구현
 
 def gcd(a,b):
   while b!=0:
     a,b = b,(a%b)
   return a
   
+# 내장함수
+
+result = math.gcd(a,b)
+
 ```
 
 ### LCM
 
 ```python
+import math
+
+# 함수로 구현
 
 def lcm(a,b):
   return (a*b) // gcd(a,b)
-  
+
+# 내장함수
+
+result = math.lcm(a,b)
 ```
 
 ### Permutation
