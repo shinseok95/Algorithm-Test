@@ -7,6 +7,8 @@
 - [Math](#Math)
   - [GCD(최대공약수)](#GCD)
   - [LCM(최소공배수)](#LCM)
+  - [Permutation(순열)](#Permutation)
+  - [Combination(조합)](#Combination)
 - [Greedy Algorithm](#Greedy-Algorithm)
 - [그래프 탐색](#그래프-탐색)
   - [DFS](#Depth-First-Search)
@@ -208,6 +210,44 @@ def lcm(a,b):
   return (a*b) // gcd(a,b)
   
 ```
+
+### Permutation
+
+- n!/(n-r)!
+- 순서 고려
+
+```python
+from itertools import permutations
+from itertools import product
+
+# 중복을 허용하지 않은 순열 리스트 -> 3개중 중복 포함하지 않고 2개 뽑음
+p = list(permutations([1,2,3],2)
+
+# 중복을 허용한 순열 리스트 -> 3개중 중복 포함하고 2개 뽑음
+p = list(product([1,2,3], repeat=2))
+
+# 기타 순열 기능 -> [1,2,3]에서 1개, [1,2,3]에서 1개를 뽑음
+p = list(product([1,2,3], [1,2,3]))
+  
+```
+
+### Combination
+
+- n!/(n-r)!*r!
+- 순서 고려X
+
+```python
+from itertools import combinations
+from itertools import combinations_with_replacement
+
+# 중복을 허용하지 않은 조합 리스트 -> 3개중 중복 포함하지 않고 2개 뽑음
+p = list(combinations([1,2,3],2)
+
+# 중복을 허용한 조합 리스트 -> 3개중 중복 포함하고 2개 뽑음
+p = list(combinations_with_replacement([1,2,3,4], 2)
+
+```
+
 
 ## Greedy Algorithm
 
