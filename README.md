@@ -27,6 +27,7 @@
   - [주어진 수를 통해서 특정 값을 만드는 경우의 수](#주어진-수를-통해서-특정-값을-만드는-경우의-수)
   - [연속 부분 최대합(구간합)](#연속-부분-최대합)
   - [LIS (Longest Increasing Subsequence)](#LIS)
+  - [LCS (Longest Common Subsequence)](#LCS)
 - [Sorting](#Sorting)
   - [Counting sort](#Counting-sort)
   - [Quick selection](#Quick-selection)
@@ -995,7 +996,7 @@ for i in range(1,len(arr)):
 ### LIS
 
 - 정의
-  - 주어진 수열 내에서 증가하는 가장 긴 부분 수열을 찾아내는 알고리즘
+  - 주어진 수열 내에서 ***증가하는 가장 긴 부분 수열***을 찾아내는 알고리즘
 
 - 아이디어
   - arr[:i] 중 arr[i]보다 작은 값이 있다면, i번째를 포함하는 부분 수열은 해당 부분 수열보다 1만큼 더 길다.
@@ -1021,6 +1022,21 @@ for i in range(N):
       dp[i] = max(dp[i],dp[j]+1)
     
 ```
+
+### LCS
+
+- 정의
+  - 두 수열이 주어졌을 때, 모두의 ***부분 수열이 되는 수열 중 가장 긴 것***을 찾는 알고리즘
+
+- 아이디어
+  - 두 수열에서 두 원소인 x(i)와 y(j)를 비교한다.
+  - 만약 x(i)와 y(j)이 같다면, x(i-1), y(j-1)에서 확장된 것이므로 +1
+  - 만약 다르다면, x(i-1),y(j) 또는 x(i),y(j-1)에서 더 큰 것을 이어가야지 최장 길이가 된다.
+  
+- 점화식
+  - DP[i][j] = max(DP[i-1][j], DP[i][j-1]) (if, x1 != y1)
+  - DP[i][j] = DP[i-1][j-1] +1 (if, x1 == y1)
+  - DP[i][j] = 0 (if, i==0 and j==0)
 
 
 ## Sorting
