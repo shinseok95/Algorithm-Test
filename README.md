@@ -541,7 +541,7 @@ def dijkstra(start):
       
       if cost < distance[i[0]]:
         distance[i[0]] = cost
-        heapq.heappush((cost,i[0]))
+        heapq.heappush(q,(cost,i[0]))
 ```
 
 ### 플로이드 워셜 알고리즘
