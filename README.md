@@ -940,7 +940,7 @@ def dfs(n,d):
     if not visited[next_n]:
         if max_dist < d+next_d:
           max_point = next_n
-          max_dist = max(max_dist,d+next_d)
+          max_dist = d+next_d
 
         visited[next_n] = True
         dfs(next_n,d+next_d)
