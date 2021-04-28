@@ -23,6 +23,8 @@
   - [Disjoint set (서로소 집합)](#Disjoint-set)
   - [Minimum Spanning Tree(최소 신장 트리)](#Minimum-Spanning-Tree)
   - [Topological sorting (위상 정렬)](#Topological-sorting)
+- [트리 탐색](#트리-탐색)
+  - [트리의 지름](#트리의-지름)
 - [Dynamic Programming](#Dynamic-Programming)
   - [0-1 Knapsack Problem](#Knapsack-Problem)
   - [주어진 수를 통해서 특정 값을 만드는 경우의 수](#주어진-수를-통해서-특정-값을-만드는-경우의-수)
@@ -905,6 +907,52 @@ def topology_sort():
           max_time = max(max_time,result[j])
         
         q.append((i,max_time))
+```
+## 트리 탐색
+
+- 정의
+  - 사이클이 없는 무방향 그래프
+
+- 특징
+  - 어떤 두 노드를 선택해도 둘 사이에 경로가 항상 하나만 존재
+
+### 트리의 지름
+
+- 정의
+  - 트리에 존재하는 모든 경로들 중에서 가장 긴 것의 길이
+
+- 특징
+  - 두번의 DFS를 통해 해결
+
+- 동작 과정
+  - 한 노드에서 가장 거리가 먼 노드를 탐색 (DFS)
+  - 해당 노드에서 가장 거리가 먼 노드까지의 거리를 탐색(DFS)
+
+- Template
+
+ ```python
+ 
+def dfs(n,d):
+
+  global max_dist, max_point
+
+  for next_n, next_d in graph[n]:
+    if not visited[next_n]:
+        if max_dist < d+next_d:
+          max_point = next_n
+          max_dist = max(max_dist,d+next_d)
+
+        visited[next_n] = True
+        dfs(next_n,d+next_d)
+        visited[next_n] = False
+        
+visited[1] = True
+dfs(1,0)
+visited[1] = False
+
+visited[max_point] = True
+dfs(max_point,0)
+visited[max_point] = False
 ```
 
 ## Dynamic Programming
