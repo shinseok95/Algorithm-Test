@@ -26,6 +26,7 @@
 - [트리 탐색](#트리-탐색)
   - [트리의 지름](#트리의-지름)
   - [Binary_Indexed_Tree](#Binary-Indexed-Tree)
+  - [최소_공통_조상(Lowest_Common_Ancestor)](#최소-공통-조상)
 - [Dynamic Programming](#Dynamic-Programming)
   - [0-1 Knapsack Problem](#Knapsack-Problem)
   - [주어진 수를 통해서 특정 값을 만드는 경우의 수](#주어진-수를-통해서-특정-값을-만드는-경우의-수)
@@ -1033,6 +1034,143 @@ for i in range(m+k):
     print(interval_sum(b,c)
     
     
+```
+
+## 최소 공통 조상
+
+- 정의
+  - 두 노드의 공통된 조상 중에서 가장 가까운 조상을 찾는 문제
+  - Lowest Common Ancestor(LCA)
+ 
+- 동작 과정
+  - ① 모든 노드에 대한 깊이(Depth)를 계산 (DFS)
+  - ② 최소 공통 조상을 찾을 두 노드를 확인
+    - 1. 먼저 두 노드의 깊이(Depth)가 동일하도록 거슬로 올라감
+    - 2. 이후에 부모가 같아질 때까지 반복적으로 두 노드의 부모 방향으로 거슬러 올라감
+  - ③ 모든 LCA(a,b) 연산에 대하여 2번의 과정을 반복
+ 
+- 시간 복잡도
+  - O(log(NM)) (N : 전체 노드 개수 / M : 노드 쌍의 개수)
+
+- Template
+
+ ```python
+ 
+ parent = [0] * (n+1) # 부모 노드 정보
+ d = [0] * (n+1) # 각 노드까지의 깊이
+ c = [False] * (n+1) # 각 노드의 깊이가 계산되었는지 여부
+ graph = [[] for _ in range(n+1)] # 그래프 정보
+ 
+ def dfs(x,depth):
+  c[x] = True
+  d[x] = depth
+  
+  for y in graph[x]:
+    if c[y]: #이미 깊이를 구했다면 넘기기
+      continue
+     
+    parent[y] = x
+    dfs(y, depth + 1)
+
+# A와 B의 최소 공통 조상을 찾는 함수
+def lca(a,b):
+  
+  # 깊이가 동일하도록
+  while d[a] != d[b]:
+    # 한칸씩 거슬러 올라감
+    if d[a] > d[b]:
+      a = parent[a]
+    else:
+      b= parent[b]
+  
+  # 노드가 같아지도록
+  while a != b:
+    a = parent[a]
+    b = parent[b]
+ 
+return a
+
+# 루트 노드 == 1
+dfs(1,0)
+
+lca(a,b)
+ 
+```
+
+- 심화 LCA 알고리즘
+  - 2의 제곱 형태로 거슬러 올라감
+  - 메모리를 활용하여 각 노드에 대한 2^i번째 부모에 대한 정보 기록 (다이나믹 프로그래밍)
+  - 
+- 시간 복잡도
+  - O(log(MlogN)) (N : 전체 노드 개수 / M : 노드 쌍의 개수)
+
+- Template
+
+ ```python
+ 
+ LOG = 21 # 2^20 = 1,000,000
+ 
+ parent = [[0] * LOG for _ in range(n+1) ] # 부모 노드 정보
+ d = [0] * (n+1) # 각 노드까지의 깊이
+ c = [False] * (n+1) # 각 노드의 깊이가 계산되었는지 여부
+ graph = [[] for _ in range(n+1)] # 그래프 정보
+ 
+ def dfs(x,depth):
+  c[x] = True
+  d[x] = depth
+  
+  for y in graph[x]:
+    if c[y]: #이미 깊이를 구했다면 넘기기
+      continue
+    
+    # 바로 한칸 위 노드 정보 저장 (2^0칸)
+    parent[y][0] = x
+    dfs(y, depth + 1)
+
+# 전체 부모 관계를 설정하는 함수
+
+def set_parent():
+  dfs(1,0)
+  
+  # 모든 노드의 2^(i-1) 위의 노드를 알아야지 2^i 위의 노드를 알 수 있다
+  # 그러므로 bottom up 방식
+  for i in range(1,LOG):
+    for j in range(1,n+1):
+      
+      # 노드 j의 2^(i-1) 위의 노드의 2^(i-1) 노드
+      # 예를 들어, i == 3, j == 10이면, 노드 10의 2^2 위 노드의 2^2 노드 
+      # 즉, 노드 10의 2^3 위의 노드
+      parent[j][i] = parent[parent[j][i-1]][i-1]
+
+# A와 B의 최소 공통 조상을 찾는 함수
+def lca(a,b):
+
+  # b가 더 깊도록 설정
+    if d[a] > d[b]:
+      a,b = b,a
+    
+  # 깊이가 동일하도록 설정 (2^n)칸씩 올라감
+  
+  for i in range(LOG-1, -1, -1):
+    
+    # 예를 들어, 두 노드의 깊이 차이가 15이면, 8->4->2->1
+    if d[b] - d[a] >= (1<<i):
+      b = parent[b][i]
+  
+  # 부모가 같아지도록
+  if a == b:
+    return a
+  
+  for i in range(LOG-1, -1, -1):
+    if parent[a][i] != parent[b][i]:
+      a = parent[a][i]
+      b = parent[b][i]
+  
+  return parent[a][0]
+
+set_parent()
+lca(a,b)
+  
 ```
 
 ## Dynamic Programming
