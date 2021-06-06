@@ -137,6 +137,18 @@ print({:.2f}.format(result))
 
 ```
 
+### 2차원 리스트 최대 최솟값 구하기
+
+```python
+
+# 최대값
+max_val = max(map(max,dist))
+
+# 최솟값
+max_val = min(map(min,dist))
+```
+
+
 ### 얕은 복사와 깊은 복사
 
 - 얕은 복사
