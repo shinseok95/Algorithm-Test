@@ -25,6 +25,7 @@
   - [Topological sorting (위상 정렬)](#Topological-sorting)
 - [트리 탐색](#트리-탐색)
   - [트리의 지름](#트리의-지름)
+  - [Binary_Indexed_Tree](#Binary-Indexed-Tree)
 - [Dynamic Programming](#Dynamic-Programming)
   - [0-1 Knapsack Problem](#Knapsack-Problem)
   - [주어진 수를 통해서 특정 값을 만드는 경우의 수](#주어진-수를-통해서-특정-값을-만드는-경우의-수)
@@ -965,6 +966,73 @@ visited[1] = False
 visited[max_point] = True
 dfs(max_point,0)
 visited[max_point] = False
+```
+
+## Binary Indexed Tree
+
+- 정의
+  - 2진법 인덱스 구조를 활용해 구간 합 문제를 효과적으로 해결해 줄 수 있는 자료구조
+  - 펜윅 트리(Fenwick Tree)
+
+- 0이 아닌 마지막 비트를 찾는 방법
+  - K & -K (And 연산)
+
+- 활용
+  - 대규모 업데이트가 가능한 상황에서의 구간 합 문제
+
+- 시간복잡도
+  - O(logN)
+ 
+- Template
+
+ ```python
+ 
+# 데이터 개수(n), 변경 횟수(m), 구간 합 계산 횟수(k)
+n,m,k = map(int,input().split())
+ 
+arr = [0] * (n+1)
+tree = [0] * (n+1)
+ 
+# i번째 수까지의 누적 합을 계산하는 함수
+ 
+def prefix_sum(i):
+ result = 0
+  
+ while i > 0:
+   result += tree[i]
+   i -= (i & -i)
+  
+ return result
+
+# i번째 수를 dif만큼 더하는 함수
+
+def update:
+  
+  while i <= n:
+    tree[i] += dif
+    i += (i & -i)
+
+# start부터 end까지의 구간 합을 계산하는 함수
+
+def interval_sum(start, end):
+  return prefix_sum(end) - prefix_sum(start-1)
+
+for i in range(1,n+1):
+  x = int(input())
+  arr[i] = x
+  update(i,x)
+  
+for i in range(m+k):
+  a,b,c = map(int,input().split())
+  
+  # 업데이트 연산인 경우
+  if a==1:
+    update(b, c-arr[b]) # 바뀐 크기(dif)만큼 적용
+    arr[b] = c
+  else:
+    print(interval_sum(b,c)
+    
+    
 ```
 
 ## Dynamic Programming
