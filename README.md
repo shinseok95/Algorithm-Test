@@ -205,6 +205,26 @@ numbers = list(tmp[1:-1].split(",")) # ','를 구분자로 사용
 print("[", ",".join(numbers), "]" ,sep="") # ','를 붙여서 출력 -> [1,2,3,4]
 ```
 
+### 커스텀 정렬
+
+```python
+
+import functools
+
+def comp(a,b):
+
+# 왼쪽이 크면 1 , 오른쪽이 크면 -1, 같으면 0
+  if a>b :
+    return 1
+  elif a<b:
+    return -1
+  else:
+    return 0
+
+# key로 커스텀 compator를 삽입
+numbers.sort(key = functools.cmp_to_key(comp))
+        
+```
 # 알고리즘 개념 정리
 
 ## Math
