@@ -225,6 +225,32 @@ def comp(a,b):
 numbers.sort(key = functools.cmp_to_key(comp))
         
 ```
+
+### 특정 문자열로 시작하는 문자열 찾기
+
+```python
+
+"""
+
+p2.find(p1, start) : start부터 p1문자가 어디에 존재하는 지 확인 (없을 경우 -1 리턴)
+
+p2.startwith(p1,start) : start부터 p1문자로 시작하는 지 확인 (맞으면 True, 틀리면 False 리턴)
+
+p2.endwith(p1,start,end) : start~end 번째 문자열에서 p1문자로 끝나는 지 확인 (맞으면 True, 틀리면 False 리턴)
+
+"""
+
+# 접두사 존재 유무 알고리즘
+
+string_list = sorted(string_list)
+
+for p1, p2 in zip(string_list, string_list[1:]):
+  
+  if p2.startswith(p1):
+    return False
+```
+
+
 # 알고리즘 개념 정리
 
 ## Math
