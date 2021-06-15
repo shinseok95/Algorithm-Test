@@ -9,6 +9,7 @@
   - [LCM(최소공배수)](#LCM)
   - [Permutation(순열)](#Permutation)
   - [Combination(조합)](#Combination)
+  - [경우의 수](#경우의-수)
 - [Greedy Algorithm](#Greedy-Algorithm)
 - [그래프 탐색](#그래프-탐색)
   - [DFS](#Depth-First-Search)
@@ -250,6 +251,42 @@ for p1, p2 in zip(string_list, string_list[1:]):
     return False
 ```
 
+### 등장 횟수 세기
+
+
+```python
+
+"""
+내부적으로 Hash Table을 사용
+"""
+
+from collections import Counter
+
+counter = Counter(['red','blue','red'])
+
+# counter['red'] = 2 / counter['blue'] = 1
+```
+
+### 연속적인 계산
+
+
+```python
+
+"""
+reduce(수식, 리스트, 초기값)
+"""
+
+from functools import reduce
+
+answer = reduce(lambda a,b : a+b, [1,2,3,4,5])
+
+# answer = ((((1+2)+3)+4)+5) = 15
+
+answer = reduce(lambda a,b : a+b, [1,2,3,4,5], 100)
+
+# answer = (((((100+1)+2)+3)+4)+5) = 115
+```
+
 
 # 알고리즘 개념 정리
 
@@ -325,6 +362,21 @@ p = list(combinations_with_replacement([1,2,3,4], 2)
 
 ```
 
+### 경우의 수 
+
+
+- 모든 경우의 수를 구하는 수식 (ex : a,b,c)
+  -  (a + 1)(b + 1)(c + 1) - 1 = (a + b + c) + (ab + bc + ca) + abc
+
+
+```python
+
+from functools import reduce
+
+values = [1,1,1,2]
+answer = reduce(lambda x, y: x*(y+1),values(), 1) - 1
+    
+```
 
 ## Greedy Algorithm
 
