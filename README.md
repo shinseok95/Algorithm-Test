@@ -289,8 +289,6 @@ answer = reduce(lambda a,b : a+b, [1,2,3,4,5], 100)
 
 ### 리스트 인덱스 붙이기(Enumerate)
 
-for i, v in enumerate(t):
-
 ```python
 
 before = [1,2,3,4,5]
