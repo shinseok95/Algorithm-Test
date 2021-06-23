@@ -1,6 +1,6 @@
 # Algorithm-Test-Exercise
-> 코딩테스트를 대비한 문제 풀이를 정리하는 Repository입니다.
-
+> 코딩테스트를 대비한 문제 풀이를 정리하는 Repository입니다.<br>
+> [백준 프로필](https://solved.ac/profile/pjjpjj2002)
 # 목차
 
 - [코딩테스트를 위한 파이썬](#코딩테스트를-위한-파이썬)
