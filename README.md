@@ -26,7 +26,6 @@
   - [Topological sorting (위상 정렬)](#Topological-sorting)
 - [그래프 탐색 문제유형](#그래프-탐색-문제유형)
   - [순위 구하기](#순위-구하기)
-### 순위 구하기
 - [트리 탐색](#트리-탐색)
   - [트리의 지름](#트리의-지름)
   - [Binary_Indexed_Tree](#Binary-Indexed-Tree)
