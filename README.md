@@ -24,6 +24,9 @@
   - [Disjoint set (서로소 집합)](#Disjoint-set)
   - [Minimum Spanning Tree(최소 신장 트리)](#Minimum-Spanning-Tree)
   - [Topological sorting (위상 정렬)](#Topological-sorting)
+- [그래프 탐색 문제유형](#그래프-탐색-문제유형)
+  - [순위 구하기](#순위-구하기)
+### 순위 구하기
 - [트리 탐색](#트리-탐색)
   - [트리의 지름](#트리의-지름)
   - [Binary_Indexed_Tree](#Binary-Indexed-Tree)
@@ -1032,6 +1035,51 @@ def topology_sort():
         
         q.append((i,max_time))
 ```
+
+## 그래프 탐색 문제유형
+
+### 순위 구하기
+
+
+- 정의
+  - 각 노드마다 승패가 주어지고, 정확히 순위를 알 수 있는 노드의 수를 구하라는 문제
+ 
+- 해결방법
+  - 플로이드 워셜을 통해 모든 노드의 관계를 확인하며 관계 업데이트
+
+- 시간복잡도
+  - O(V^3)
+
+- Template
+
+ ```python
+
+answer = 0
+graph = [['?'] * (n+1) for _ in range(n+1)]
+    
+for winner,looser in results:
+  graph[winner][looser] = 'win'
+  graph[looser][winner] = 'lose'
+    
+for k in range(1,n+1):
+  for i in range(1,n+1):
+    for j in range(1,n+1):
+    
+      if graph[i][k] == 'win' and graph[k][j] == 'win':
+        graph[i][j] = 'win'
+        graph[j][i] = 'lose'
+                
+      elif graph[i][k] == 'lose' and graph[k][j] == 'lose':
+        graph[i][j] = 'lose'
+        graph[j][i] = 'win'
+    
+for i in range(1,n+1):
+  if graph[i][1:].count('?') == 1:
+    answer+=1
+
+return answer
+```
+
 ## 트리 탐색
 
 - 정의
